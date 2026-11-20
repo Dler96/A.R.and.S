@@ -341,7 +341,13 @@ body.viewing .page{visibility:hidden}
 <script>
 {
 /* ---------- your songs: send me the files and they go here ---------- */
-const MUSIC=[ /* {name:'Song title', src:'music/song.mp3'} */ ];
+const MUSIC=[
+ {name:'I Like You The Most', src:'music/i-like-you-the-most.mp3'},
+ {name:'I Like You The Most (English version), Shania Yan', src:'music/i-like-you-the-most-english.mp3'},
+ {name:"Nothing's Gonna Change My Love For You, Shania Yan", src:'music/nothings-gonna-change.mp3'},
+ {name:'Only Love (live)', src:'music/only-love-live.mp3'},
+ {name:'Cinta Tersimpul Rapi, Jane In Heaven', src:'music/cinta-tersimpul-rapi.mp3'}
+];
 
 const HALLS=[
  {cls:'h1',r:'I',name:'Through the Leaves',place:'The garden terrace, pink gown',frame:'',note:'Frangipani branches, palm shadows and a white balcony. The first room is quiet and green, with the two of you half hidden in it.',w:[
@@ -581,7 +587,7 @@ function boxStart(){boxStop();boxI=0;boxT0=AC.currentTime+.15;boxTimer=setInterv
 function boxStop(){if(boxTimer){clearInterval(boxTimer);boxTimer=null}}
 
 const el=new Audio();el.preload='none';
-const TRACKS=[{name:'Music box waltz',kind:'box',note:'Built in'},...MUSIC.map(m=>({name:m.name,kind:'file',src:m.src,note:'From the collection'}))];
+const TRACKS=[...MUSIC.map(m=>({name:m.name,kind:'file',src:m.src,note:'Our songs'})),{name:'Music box waltz',kind:'box',note:'Built in'}];
 let ti=0,playing=false;
 el.addEventListener('ended',()=>skip(1));
 function playTrack(){if(!audio())return;AC.resume();boxStop();el.pause();const t=TRACKS[ti];if(t.kind==='box')boxStart();else{el.src=t.src;el.volume=S.vol;el.play().catch(()=>{})}playing=true;musicUI()}
